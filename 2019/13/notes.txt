@@ -1,0 +1,35 @@
+Missmatch pos 381 orig 0 diff1 1
+Missmatch pos 382 orig 0 diff1 38
+Missmatch pos 383 orig 0 diff1 22
+Missmatch pos 384 orig 0 diff1 -1
+Missmatch pos 566 orig 0 diff1 1418
+Missmatch pos 593 orig 0 diff1 1474
+Missmatch pos 1418 orig 3 diff1 0
+Missmatch pos 2312 orig 0 diff1 138
+Missmatch pos 2313 orig 0 diff1 19
+Missmatch pos 2314 orig 0 diff1 20
+DIff2:
+Missmatch pos 381 orig 0 diff2 1
+Missmatch pos 382 orig 0 diff2 38
+Missmatch pos 383 orig 0 diff2 22
+Missmatch pos 384 orig 0 diff2 -1
+Missmatch pos 388 orig 17 diff2 18
+Missmatch pos 389 orig 17 diff2 18
+Missmatch pos 392 orig 19 diff2 18
+Missmatch pos 566 orig 0 diff2 1417
+Missmatch pos 593 orig 0 diff2 1341
+Missmatch pos 1302 orig 4 diff2 0
+Missmatch pos 1341 orig 0 diff2 4
+Missmatch pos 1418 orig 3 diff2 0
+Missmatch pos 2312 orig 0 diff2 138
+Missmatch pos 2313 orig 0 diff2 18
+Missmatch pos 2314 orig 0 diff2 20
+between diffs:
+Missmatch pos 388 diff1 17 diff2 18
+Missmatch pos 389 diff1 17 diff2 18
+Missmatch pos 392 diff1 19 diff2 18
+Missmatch pos 566 diff1 1418 diff2 1417
+Missmatch pos 593 diff1 1474 diff2 1341
+Missmatch pos 1302 diff1 4 diff2 0
+Missmatch pos 1341 diff1 0 diff2 4
+Missmatch pos 2313 diff1 19 diff2 18
