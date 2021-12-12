@@ -1,7 +1,11 @@
 import unittest
 from pprint import pprint
 import itertools
+import functools
 import math
+import copy
+import collections
+
 
 
 def read_data(filename):
