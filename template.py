@@ -7,7 +7,6 @@ import copy
 import collections
 
 
-
 def read_data(filename):
     with open(filename) as f:
         return [int(l.strip()) for l in f.readlines()]
