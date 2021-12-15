@@ -16,7 +16,7 @@ def read_data(filename):
 class MyTestCase(unittest.TestCase):
     def test_part1(self):
         data = read_data('input1.txt')
-        used = []
+        used = set()
         end = (len(data) - 1, len(data[0]) - 1)
         dtra = []
         heapq.heappush(dtra, (0, (0, 0)))
@@ -25,13 +25,15 @@ class MyTestCase(unittest.TestCase):
             if p == end:
                 print(l)
                 break
-            elif p in used:
-                continue
-            used.append(p)
+            # used.add(p)
+
             py, px = p
             neighbours = [(py, px - 1), (py, px + 1), (py + 1, px), (py - 1, px)]
             for ny, nx in filter(lambda ps: ps not in used and 0 <= ps[0] < len(data) and 0 <= ps[1] < len(data[0]), neighbours):
                 heapq.heappush(dtra, (l + data[ny][nx], (ny, nx)))
+                used.add((ny, nx))
+
+        print('done')
 
 
 
