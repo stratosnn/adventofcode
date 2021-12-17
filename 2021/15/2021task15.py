@@ -41,8 +41,8 @@ class MyTestCase(unittest.TestCase):
         end = (5*len(data) - 1, 5*len(data[0]) - 1)
         dtra, used = [], set()
         heapq.heappush(dtra, (0, (0, 0)))
-        p = None
-        while dtra and p != end:
+        py, px = None, None
+        while dtra and (py, px) != end:
             l, (py, px) = heapq.heappop(dtra)
             neighbours = [(py, px - 1), (py, px + 1), (py + 1, px), (py - 1, px)]
             for ny, nx in filter(lambda p: p not in used and 0 <= p[0] <= end[0] and 0 <= p[1] <= end[1], neighbours):
