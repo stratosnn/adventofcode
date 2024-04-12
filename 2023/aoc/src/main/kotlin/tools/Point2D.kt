@@ -1,5 +1,7 @@
 package org.example.tools
 
+import kotlin.math.abs
+
 
 data class Point2D(
     val x: Int,
@@ -32,4 +34,6 @@ data class Point2D(
 
     operator fun plus(other: Point2D) = Point2D(x + other.x, y + other.y)
     operator fun minus(other: Point2D) = Point2D(x - other.x, y - other.y)
+
+    fun manhattanDistance(other: Point2D) = abs(x - other.x) + abs(y - other.y)
 }
