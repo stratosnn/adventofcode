@@ -35,5 +35,13 @@ data class Point2D(
     operator fun plus(other: Point2D) = Point2D(x + other.x, y + other.y)
     operator fun minus(other: Point2D) = Point2D(x - other.x, y - other.y)
 
+    fun rotate(degrees: Int) = when (degrees) {
+        0 -> this
+        90 -> Point2D(y, -x)
+        180 -> Point2D(-x, -y)
+        270 -> Point2D(-y, x)
+        else -> throw IllegalArgumentException("Invalid degrees: $degrees")
+    }
+
     fun manhattanDistance(other: Point2D) = abs(x - other.x) + abs(y - other.y)
 }
