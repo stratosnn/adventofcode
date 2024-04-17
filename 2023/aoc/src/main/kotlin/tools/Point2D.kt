@@ -34,6 +34,9 @@ data class Point2D(
 
     operator fun plus(other: Point2D) = Point2D(x + other.x, y + other.y)
     operator fun minus(other: Point2D) = Point2D(x - other.x, y - other.y)
+    operator fun times(factor: Int) = Point2D(x * factor, y * factor)
+
+    fun determinant(other: Point2D) =  x.toLong() * other.y.toLong() - y.toLong() * other.x.toLong()
 
     fun rotate(degrees: Int) = when (degrees) {
         0 -> this
@@ -50,5 +53,13 @@ data class Point2D(
         val N = Point2D(0  to -1)
         val E = Point2D(+1 to 0)
         val W = Point2D(-1 to 0)
+
+        fun fromDirectionString(direction: String) = when (direction) {
+            "S", "D" -> S
+            "N", "U" -> N
+            "E", "R" -> E
+            "W", "L" -> W
+            else -> throw IllegalArgumentException("Invalid direction: $direction")
+        }
     }
 }
