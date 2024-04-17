@@ -44,4 +44,11 @@ data class Point2D(
     }
 
     fun manhattanDistance(other: Point2D) = abs(x - other.x) + abs(y - other.y)
+
+    companion object {
+        val S = Point2D(0  to +1) // inverted to be aligned with the grid
+        val N = Point2D(0  to -1)
+        val E = Point2D(+1 to 0)
+        val W = Point2D(-1 to 0)
+    }
 }
