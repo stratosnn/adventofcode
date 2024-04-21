@@ -39,7 +39,7 @@ class aoc20 {
     data class Conjunction(
         override val name: String,
         override val outputs: List<String>,
-        var state: MutableMap<String, Pulse> = emptyMap<String, Pulse>().toMutableMap()
+        var state: MutableMap<String, Pulse> = mutableMapOf()
     ) : Module {
         override fun process(signal: Signal) = run {
             state[signal.from] = signal.pulse
@@ -111,7 +111,7 @@ class aoc20 {
         check(rxInput is Conjunction)
 
         val selectedInputs = moduleMap.values.filter { it.outputs.contains(rxInput.name) }.map { it.name }.toSet()
-        val selectedInputsCounter = emptyMap<String, Long>().toMutableMap()
+        val selectedInputsCounter = mutableMapOf<String, Long>()
         var cnt = 0L
 
         while (selectedInputsCounter.size < selectedInputs.size) {

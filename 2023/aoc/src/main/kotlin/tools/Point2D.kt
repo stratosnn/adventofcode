@@ -35,6 +35,7 @@ data class Point2D(
     operator fun plus(other: Point2D) = Point2D(x + other.x, y + other.y)
     operator fun minus(other: Point2D) = Point2D(x - other.x, y - other.y)
     operator fun times(factor: Int) = Point2D(x * factor, y * factor)
+    operator fun times(other: Point2D) = Point2D(x * other.x, y * other.y)
 
     fun determinant(other: Point2D) =  x.toLong() * other.y.toLong() - y.toLong() * other.x.toLong()
 
