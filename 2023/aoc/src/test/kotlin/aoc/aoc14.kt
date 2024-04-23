@@ -1,23 +1,22 @@
 package aoc
 
 import org.example.tools.Point2D
+import org.example.tools.Point2D.Companion.E
+import org.example.tools.Point2D.Companion.N
+import org.example.tools.Point2D.Companion.S
+import org.example.tools.Point2D.Companion.W
 import org.example.tools.getResourceAsStrings
 import org.junit.jupiter.api.Test
 
 class aoc14 {
 
-    private val S = Point2D(0  to +1) // inverted to be aligned with the grid
-    private val N = Point2D(0  to -1)
-    private val E = Point2D(+1 to 0)
-    private val W = Point2D(-1 to 0)
-
     data class Grid(val grid: MutableMap<Point2D, Char>) {
-        val maxX: Int by lazy { grid.keys.maxOf { it.x } }
-        val maxY: Int by lazy { grid.keys.maxOf { it.y } }
+        val maxX: Long by lazy { grid.keys.maxOf { it.x } }
+        val maxY: Long by lazy { grid.keys.maxOf { it.y } }
     }
 
     private fun parseAsMap(file: String) = getResourceAsStrings(file)
-        .flatMapIndexed { y, line -> line.mapIndexed { x, c -> Point2D(x to y) to c } }
+        .flatMapIndexed { y, line -> line.mapIndexed { x, c -> Point2D(x.toLong() to y.toLong()) to c } }
         .toMap()
 
 

@@ -1,15 +1,14 @@
 package aoc
 
 import org.example.tools.Point2D
+import org.example.tools.Point2D.Companion.E
+import org.example.tools.Point2D.Companion.N
+import org.example.tools.Point2D.Companion.S
+import org.example.tools.Point2D.Companion.W
 import org.example.tools.getResourceAsStrings
 import kotlin.test.Test
 
 class aoc10 {
-
-    private val S = Point2D(0  to +1) // inverted to be aligned with the grid
-    private val N = Point2D(0  to -1)
-    private val E = Point2D(+1 to 0)
-    private val W = Point2D(-1 to 0)
 
     private val allowedNodes = mapOf(
         W to listOf('-', 'L', 'F', 'S'),

@@ -39,7 +39,7 @@ class aoc18 {
     fun part1() {
         val input = parseInput("/18/input.txt")
 
-        val area = input.runningFold(Point2D(0, 0)) { acc, v -> acc + (v.direction * v.length.toInt()) }
+        val area = input.runningFold(Point2D(0, 0)) { acc, v -> acc + (v.direction * v.length) }
             .windowed(2)
             .sumOf { (a, b) -> a.determinant(b) } / 2
 
@@ -50,7 +50,7 @@ class aoc18 {
     fun part2() {
         val input = parseInput2("/18/input.txt")
 
-        val area = input.runningFold(Point2D(0, 0)) { acc, v -> acc + (v.direction * v.length.toInt()) }
+        val area = input.runningFold(Point2D(0, 0)) { acc, v -> acc + (v.direction * v.length) }
             .windowed(2)
             .sumOf { (a, b) -> a.determinant(b) } / 2L
 

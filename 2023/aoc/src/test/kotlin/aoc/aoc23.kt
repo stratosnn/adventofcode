@@ -97,7 +97,7 @@ class aoc23 {
     fun part1() {
         val grid = parseInput("/23/input.txt")
 
-        val start = grid.entries.first { (p, c) -> p.y == 0 && c == '.' }.key
+        val start = grid.entries.first { (p, c) -> p.y == 0L && c == '.' }.key
         val maxY = grid.keys.maxOf { it.y }
         val finish = grid.entries.first { (p, c) -> p.y == maxY && c == '.' }.key
 
@@ -109,7 +109,7 @@ class aoc23 {
     fun part2() {
         val grid = parseInput("/23/input.txt")
 
-        val start = grid.entries.first { (p, c) -> p.y == 0 && c == '.' }.key
+        val start = grid.entries.first { (p, c) -> p.y == 0L && c == '.' }.key
         val maxY = grid.keys.maxOf { it.y }
         val finish = grid.entries.first { (p, c) -> p.y == maxY && c == '.' }.key
 
