@@ -5,8 +5,8 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.produce
 import org.junit.jupiter.api.Test
 import tools.getResource
-import java.security.MessageDigest
-import kotlin.text.Charsets.UTF_8
+import tools.hashString
+import tools.toHex
 
 
 class aoc5 {
@@ -59,13 +59,8 @@ class aoc5 {
 
 }
 
-fun hashString(str: String, algorithm: String): ByteArray =
-    MessageDigest.getInstance(algorithm).digest(str.toByteArray(UTF_8))
-
-fun ByteArray.toHex() = joinToString("") { byte -> "%02x".format(byte) }
-
 @OptIn(ExperimentalCoroutinesApi::class)
-fun CoroutineScope.produceNumbers() = produce(capacity = Runtime.getRuntime().availableProcessors() * 16  ) {
+fun CoroutineScope.produceNumbers() = produce(capacity = Runtime.getRuntime().availableProcessors() * 16) {
     for (seq in 0..Int.MAX_VALUE) {
         send(seq)
     }
