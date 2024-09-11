@@ -17,14 +17,13 @@ class aoc16 {
     val input = "01110110101001000".toBooleanArray()
 
     fun expand(arr: BooleanArray): BooleanArray {
-        val transformed = arr.reversed().map { !it }.toBooleanArray()
         return BooleanArray(2*arr.size + 1) { ix ->
             if (ix < arr.size) {
                 arr[ix]
             } else if (ix == arr.size) {
                 false
             } else {
-                transformed[ix - arr.size - 1]
+                !arr[2 * arr.size - ix]
             }
         }
     }
@@ -37,7 +36,7 @@ class aoc16 {
         return res
     }
 
-    fun fold(arr: BooleanArray) = arr.toList().chunked(2).map { (first, second) -> first == second }.toBooleanArray()
+    fun fold(arr: BooleanArray) = BooleanArray(arr.size / 2) { arr[2*it] == arr[2*it + 1] }
 
     fun checksum(arr: BooleanArray): BooleanArray {
         var res = arr

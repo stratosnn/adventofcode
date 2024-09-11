@@ -1,7 +1,8 @@
-import org.junit.jupiter.api.Test
 import tools.getResourceAsStrings
+import kotlin.test.Test
 
-class aoc12 {
+
+class aoc23 {
 
     data class Registers(val map: MutableMap<String, Int> = mutableMapOf("a" to 0, "b" to 0, "c" to 0, "d" to 0)) : MutableMap<String, Int> by map {
         var a: Int by map
@@ -11,7 +12,7 @@ class aoc12 {
     }
 
     class Computer(
-        val commands: List<Instruction>,
+        val commands: MutableList<Instruction>,
         val reg: Registers = Registers(),
         var frame: Int = 0
     ) {
@@ -57,14 +58,35 @@ class aoc12 {
 
     data class Jnz(
         val reg: String,
-        val offset: Int
+        val offset: String
     ) : Instruction {
         override fun execute(computer: Computer) {
             if (computer.reg[reg] != 0) {
-                computer.frame += offset
+                computer.frame += offset.toIntOrNull() ?: computer.reg[offset]!!
             } else {
                 computer.frame++
             }
+        }
+    }
+
+    data class Tgl(
+        val reg: String,
+    ) : Instruction {
+        override fun execute(computer: Computer) {
+            val value = computer.reg[reg]!!
+            val offset = computer.frame + value
+            if (offset < computer.commands.size) {
+                val newCommand = when (val oldCmd = computer.commands[offset]) {
+                    is Inc -> Dec(oldCmd.reg)
+                    is Tgl -> Inc(oldCmd.reg)
+                    is Dec -> Inc(oldCmd.reg)
+                    is Cpy -> Jnz(oldCmd.src, oldCmd.dst)
+                    is Jnz -> Cpy(oldCmd.reg, oldCmd.offset)
+                    else -> error("Cannot toggle instruction ${computer.commands[offset]}")
+                }
+                computer.commands[offset] = newCommand
+            }
+            computer.frame++
         }
     }
 
@@ -74,23 +96,26 @@ class aoc12 {
             "cpy" -> Cpy(split[1], split[2])
             "inc" -> Inc(split[1])
             "dec" -> Dec(split[1])
-            "jnz" -> Jnz(split[1], split[2].toInt())
+            "jnz" -> Jnz(split[1], split[2])
+            "tgl" -> Tgl(split[1])
             else -> error("Cannot parse instruction $line")
         }
     }
 
     @Test
     fun part1() {
-        val input = parseInput("/12/input.txt")
-        val computer = Computer(input)
+        val commands = parseInput("/23/input.txt").toMutableList()
+        val computer = Computer(commands, Registers().apply { a = 7 })
         computer.apply { run() }.also { println(it.reg.a) }
     }
 
     @Test
     fun part2() {
-        val input = parseInput("/12/input.txt")
-        val computer = Computer(input, Registers().apply { c = 1 })
-        computer.apply { run() }.also { println(it.reg.a) }
+        List(7) {
+            val commands = parseInput("/23/input.txt").toMutableList()
+            val computer = Computer(commands, Registers().apply { a = it + 6 })
+            computer.apply { run() }
+            computer.reg
+        }.forEachIndexed() { ix, v -> println("${ix + 6} -> $v") }
     }
-
 }
